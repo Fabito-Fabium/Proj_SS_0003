@@ -56,3 +56,6 @@ $$
 
 obs: no código fornecido não é feito explicitamente a chamada descrita acima, porém,
 é possível verificar que a abordagem é equivalente a um caso específico do que foi discutido, onde $m$ e $n$ são iguais.
+
+Colab com demonstração do operador linear aplicado na remoção do crosstalk:
+https://colab.research.google.com/drive/1m7mHPk5V4tD1p8f4cMzr6mGot37MFG4M?usp=drive_link
