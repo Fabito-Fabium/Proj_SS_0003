@@ -20,6 +20,7 @@ $[\underline g_i]\_{i = 1}^{Ne}$.
 
 Entretanto, assumindo que cada $h_{i, j}$ é finita, dependendo do tamanho da matriz de convolução $\underline H$, alocá-la na memória pode ser custoso. Portanto, é interessante desenvolvermos um operador linear do tipo _scipy.LinearOperator_, no qual a funcionalidade é a mesma quando comparada a matriz de convolução, mas o processo é descrito por um funcional linear, ou seja, no lugar de alocarmos uma matriz, é feito chamadas de funções.
 
-Para realizar a transição entre operador linear e matriz de convolução, teremos que explorar a relação entre matrizes de convolução e a operação convolução.
+### Colab que demonstra a conversão da matriz de convolução para um operador linear:
+https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing
 
-### Relação entre matriz de convolução e convolução para sinais discretos:
+
