@@ -1,5 +1,5 @@
-## Projeto Final - Implementação do operador linear para o crosstalk.
-
+## Projeto Final - Implementação do operador linear para o crosstalk eletrônico.
+----
 
 ### Introdução:
 De _Crosstalk Identification in xDSL Systems_, desprezando o ruído, o sinal observado no _i_-ésimo canal pode ser descrito pelo seguinte diagrama de blocos:
@@ -20,7 +20,36 @@ $[\underline g_i]\_{i = 1}^{Ne}$.
 
 Entretanto, assumindo que cada $h_{i, j}$ é finita, dependendo do tamanho da matriz de convolução $\underline H$, alocá-la na memória pode ser custoso. Portanto, é interessante desenvolvermos um operador linear do tipo _scipy.LinearOperator_, no qual a funcionalidade é a mesma quando comparada a matriz de convolução, mas o processo é descrito por um funcional linear, ou seja, no lugar de alocarmos uma matriz, é feito chamadas de funções.
 
-### Colab que demonstra a conversão da matriz de convolução para um operador linear:
+----
+
+Colab que demonstra a conversão da matriz de convolução para um operador linear:
+----
 https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing
 
+
+###  Implementação do operador linear:
+----
+Com isso, já que 
+
+$$
+\begin{align}
+\underline g_i = \sum_{j = 1}^{N_e} \underline h_{i, j} * \underline f_j = \sum_{j = 1}^{N_e} \underline H_{i, j} \underline f_j.
+\end{align}
+$$
+
+se para cada $i, j \in \\{1, \dots, N_e\\}$, foi possível criar um operador linear $Op_{i, j}$ para representar $\underline H_{i, j}$ (ver colab acima), então,
+
+$$
+\begin{align}
+\underline g_i = \sum_{j = 1}^{N_e} \underline H_{i, j} \underline f_j \equiv \sum_{j = 1}^{N_e} Op_{i, j}(\underline f_j),
+\end{align}
+$$
+
+enquanto a adjunta da operação acima pode ser descrita em termos da adjunta de $Op_{i, j}$ da seguinte forma:
+
+$$
+\begin{align}
+\underline f_i = \sum_{j = 1}^{N_e} \underline H^H_{i, j} \underline g_j \equiv \sum_{j = 1}^{N_e} Op^H_{i, j}(\underline g_j).
+\end{align}
+$$
 
