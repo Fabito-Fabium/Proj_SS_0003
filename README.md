@@ -53,3 +53,5 @@ $$
 \end{align}
 $$
 
+obs: no código fornecido não é feito explicitamente a chamada descrita acima, porém,
+é possível verificar que a abordagem é equivalente ao que foi discutido mas de uma forma menos didática.
