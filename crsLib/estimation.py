@@ -22,9 +22,9 @@ def crs_FIR_linOp(all_h, Nt, Ne):
         # G recebe F (identidade)
         #G[:, :] = F[:, :]
         for j, k in valid_idx:
-            G[:, j] += ss.convolve(F[:, k], all_h[:, j, k], mode='full')[:Nt]
+            G[:, j] += ss.convolve(F[:, k], all_h[:, j, k], mode='full')[:-(h_len - 1)]
             if j != k:
-                G[:, k] += ss.convolve(F[:, j], all_h[:, k, j], mode='full')[:Nt]
+                G[:, k] += ss.convolve(F[:, j], all_h[:, k, j], mode='full')[:-(h_len - 1)]
         return G.ravel()
 
     def rmatvec(y):
