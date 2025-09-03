@@ -27,8 +27,9 @@ Colab que demonstra a conversão da matriz de convolução para um operador line
 https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing
 
 
-###  Implementação do operador linear:
+Implementação do operador linear:
 ----
+
 Com isso, já que 
 
 $$
@@ -53,3 +54,5 @@ $$
 \end{align}
 $$
 
+obs: no código fornecido não é feito explicitamente a chamada descrita acima, porém,
+é possível verificar que a abordagem é equivalente a um caso específico do que foi discutido, onde $m$ e $n$ são iguais.
