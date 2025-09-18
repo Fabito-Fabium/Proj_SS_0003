@@ -1,8 +1,8 @@
-## Projeto Final - Implementação do operador linear para o crosstalk eletrônico.
+## Projeto Final - Implementação do operador linear para o crosstalk eletrônico em ultrassons.
 ----
 
 ### Introdução:
-De _Crosstalk Identification in xDSL Systems_, desprezando o ruído, o sinal observado no _i_-ésimo canal pode ser descrito pelo seguinte diagrama de blocos:
+Assumindo que a aquisição que temos em mão seja afetado somente pelo crosstalk eletrônico, um sinal observado no i-ésimo canal, como em [_Crosstalk Identification in xDSL Systems_](https://ieeexplore.ieee.org/document/942511), pode ser modelado da seguinte maneira:
 
 <p align="center">
 <img width="416" height="161" alt="image" src="https://github.com/user-attachments/assets/9b13e25b-32d9-4253-b32f-7a2276913176" />
@@ -15,12 +15,16 @@ $$
 \end{align}
 $$
 
-Ou seja, para a remoção do crosstalk é de extrema importância conseguirmos escrever o nosso problema no formato $\underline H f = g$ e simplesmente resolver um problema least-squares (ou suas variantes) para descobrirmos qual seria a matriz de sinais ideais $[\underline f_i]\_{i = 1}^{Ne}$ dada a matriz de sinais observados 
+Ou seja, para a remoção do crosstalk é conveniente descrever o nosso problema no formato $\underline H f = g$ e resolver um problema least-squares para descobrirmos qual seria a matriz de sinais ideais $[\underline f_i]\_{i = 1}^{Ne}$ dada a matriz de sinais observados 
 $[\underline g_i]\_{i = 1}^{Ne}$.
 
-Entretanto, assumindo que cada $\underline h_{i, j}$ é finita, dependendo do tamanho da matriz de convolução $\underline H$, alocá-la na memória pode ser custoso. Portanto, é conveniente desenvolvermos um operador linear do tipo _scipy.LinearOperator_, no qual a funcionalidade é a mesma quando comparada a matriz de convolução, mas o processo é descrito por um funcional linear, ou seja, no lugar de alocarmos uma matriz, é feito chamadas de funções.
+Entretanto, assumindo que cada $\underline h_{i, j}$ é finita, dependendo do tamanho da matriz de convolução $\underline H$ e o número de canais considerados, alocá-las na memória pode ser custoso. 
+Portanto, é conveniente desenvolvermos um operador linear do tipo _scipy.LinearOperator_, no qual a funcionalidade é a mesma quando comparada a matriz de convolução, porém, utilizando menos memória RAM.
 
-([Colab](https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing) que demonstra a conversão da matriz de convolução para um operador linear.)
+Ou seja, dados dois vetores $\underline a$ e $\underline b$, onde $\underline A$ é a representação em matriz de convolução de $\underline a$, o operador linear desejado faz a convolução entre $\underline a$ e $\underline b$ (usando ss.convolve) e trunca o resultado de forma que ela seja identica
+ao resultado obtido pela multiplicação entre $\underline A$ e $\underline b$.
+
+([Colab](https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing) que demonstra a conversão de uma matriz de convolução qualquer para um operador linear como descrito anteriormente.)
 
 
 Implementação do operador linear:
@@ -50,8 +54,8 @@ $$
 \end{align}
 $$
 
-obs: no código fornecido não é feito explicitamente a chamada descrita acima, porém,
-é possível verificar que a abordagem é equivalente a um caso específico do que foi discutido, onde $m$ e $n$ são iguais.
+obs: no código fornecido não é feito explicitamente o que foi descrito a pouco, porém,
+é possível verificar que a abordagem é equivalente a um caso específico no qual $m$ e $n$ são iguais.
 
 ([Colab](https://colab.research.google.com/drive/1m7mHPk5V4tD1p8f4cMzr6mGot37MFG4M?usp=drive_link) com demonstração do operador linear aplicado na remoção do crosstalk.)
 
