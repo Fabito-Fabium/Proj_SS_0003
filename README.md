@@ -20,11 +20,7 @@ $[\underline g_i]\_{i = 1}^{Ne}$.
 
 Entretanto, assumindo que cada $h_{i, j}$ é finita, dependendo do tamanho da matriz de convolução $\underline H$, alocá-la na memória pode ser custoso. Portanto, é interessante desenvolvermos um operador linear do tipo _scipy.LinearOperator_, no qual a funcionalidade é a mesma quando comparada a matriz de convolução, mas o processo é descrito por um funcional linear, ou seja, no lugar de alocarmos uma matriz, é feito chamadas de funções.
 
-----
-
-Colab que demonstra a conversão da matriz de convolução para um operador linear:
-----
-https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing
+([Colab](https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing) que demonstra a conversão da matriz de convolução para um operador linear.)
 
 
 Implementação do operador linear:
@@ -38,7 +34,7 @@ $$
 \end{align}
 $$
 
-se para cada $i, j \in \\{1, \dots, N_e\\}$, foi possível criar um operador linear $Op_{i, j}$ para representar $\underline H_{i, j}$ (ver colab acima), então,
+se para cada $i, j \in \\{1, \dots, N_e\\}$, foi possível criar um operador linear $Op_{i, j}$ para representar $\underline H_{i, j}$ (ver [colab](https://colab.research.google.com/drive/1Mf2YAiU24RBWifKqfNX-F-UKyaxXM3zN?usp=sharing)), então,
 
 $$
 \begin{align}
@@ -57,5 +53,5 @@ $$
 obs: no código fornecido não é feito explicitamente a chamada descrita acima, porém,
 é possível verificar que a abordagem é equivalente a um caso específico do que foi discutido, onde $m$ e $n$ são iguais.
 
-Colab com demonstração do operador linear aplicado na remoção do crosstalk:
-https://colab.research.google.com/drive/1m7mHPk5V4tD1p8f4cMzr6mGot37MFG4M?usp=drive_link
+([Colab](https://colab.research.google.com/drive/1m7mHPk5V4tD1p8f4cMzr6mGot37MFG4M?usp=drive_link) com demonstração do operador linear aplicado na remoção do crosstalk.)
+
